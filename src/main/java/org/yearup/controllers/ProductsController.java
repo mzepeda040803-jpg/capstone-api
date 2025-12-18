@@ -64,7 +64,7 @@ public class ProductsController
 
     @PostMapping()
     @PreAuthorize("hasRole('ADMIN')")
-    @ResponseStatus(value = HttpStatus.CREATED)
+//    @ResponseStatus(value = HttpStatus.CREATED)
     public Product addProduct(@RequestBody Product product)
     {
         try
@@ -81,16 +81,16 @@ public class ProductsController
     @PreAuthorize("hasRole('ADMIN')")
     public void updateProduct(@PathVariable int id, @RequestBody Product product)
     {
-        //product.setProductId(id);
-        //production.update(id, product)
-        try
-        {
-            productDao.update(id, product);
-        }
-        catch(Exception ex)
-        {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Oops... our bad.");
-        }
+        product.setProductId(id);
+        productDao.update(id, product);
+//        try
+//        {
+//            productDao.update(id, product);
+//        }
+//        catch(Exception ex)
+//        {
+//            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Oops... our bad.");
+//        }
     }
 
     @DeleteMapping("{id}")
